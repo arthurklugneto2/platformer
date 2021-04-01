@@ -1,0 +1,16 @@
+{
+    "dialog.continue":"                                  E - Continuar",
+    "player.receive.life":"Você recebeu {0} VIDA",
+    "player.receive.hearth":"Você recebeu {0} CORAÇÃO",
+    "player.receive":"Você recebeu {0} {1}",
+    "logs.log1.1":"--- Registro # 1 ---                                        Não sei o que está acontecendo. Aparentemente o experimento falhou. Ainda não sei se os espécimes estão devidamente aprisionados e dominados. Eu preciso verificar com urgência a cela eletrônica.",
+    "logs.log1.2":"Se ele escapar, será o nosso fim!",
+    "logs.log2.1":"--- Registro # 2 ---                                        A situação ficou crítica! Eu tive que trancá-lo na cela eletrônica. A senha é operada por tensão.",
+    "logs.log2.2":"--- Registro # 2 ---                                        Por favor! Se alguém estiver lendo isso, não configure os painéis em 45V. Isso seria catastrófico!",
+    "logs.log3":"--- Registro #3 ---                                      Esse foi a primeira cela eletrônica que desenvolvemos. Eu deixei um item de grande valor nela.                                         Vou deixar a senha para desbloqueio em {0}V. Tenho ceteza que o item ficará seguro.",
+    "logs.log4":"Eu tenho a impressão de que a senha 6482 será útil.                                                            Melhor anotá-la.",
+
+    "puzzle_1C11_display_open":"Aberto",
+
+    "player.skill.double_jump":"Você recebeu a habilidade PULO DUPLO. Quando você estiver caindo, pode pressionar o botão de pulo novamente e dar mais um impulso e alcançar lugares mais longe "
+}
