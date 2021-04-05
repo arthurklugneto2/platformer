@@ -40,8 +40,8 @@
             "scale": 0.33,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 1250,
-                "y": 528.7878787878789
+                "x": 1583.333333333333,
+                "y": 701.5151515151515
             }
         },
         "/home/arthur/Desktop/Python/plat/Assets/Levels/1.tmx": {
@@ -57,7 +57,7 @@
         },
         "/home/arthur/Desktop/Python/plat/Assets/Levels/1979.tmx": {
             "scale": 1.0475446428571429,
-            "selectedLayer": 6,
+            "selectedLayer": 4,
             "viewCenter": {
                 "x": 304.04432132963984,
                 "y": 161.80694651608778
@@ -68,9 +68,9 @@
         },
         "/home/arthur/Desktop/Python/plat/Assets/Levels/1C11.tmx": {
             "scale": 0.797109375,
-            "selectedLayer": 4,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 304.2242477702637,
+                "x": 305.4787807507596,
                 "y": 319.2786435362149
             }
         },
@@ -137,7 +137,7 @@
             "scale": 1.9998579545454542,
             "selectedLayer": 6,
             "viewCenter": {
-                "x": 144.76028126997656,
+                "x": 144.26024575609068,
                 "y": 64.25456353434194
             }
         },
@@ -162,7 +162,7 @@
             "selectedLayer": 4,
             "viewCenter": {
                 "x": 176.66666666666669,
-                "y": 203.33333333333334
+                "y": 735.3333333333333
             }
         },
         "/home/arthur/Desktop/Python/plat/Assets/Levels/5_2.tmx": {
@@ -265,8 +265,8 @@
             "scale": 0.5,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 699,
-                "y": 427
+                "x": 697,
+                "y": 539
             }
         },
         "/home/arthur/Desktop/Python/plat/Assets/Levels/Enemies.tsx": {
@@ -278,7 +278,7 @@
             "selectedLayer": 6,
             "viewCenter": {
                 "x": 145.2121924924042,
-                "y": 88.13094187983927
+                "y": 266.90189160050966
             }
         },
         "/home/arthur/Desktop/Python/plat/Assets/Levels/FA5B.tmx": {
@@ -286,7 +286,7 @@
             "selectedLayer": 4,
             "viewCenter": {
                 "x": 144.02038616093307,
-                "y": 201.22709007154762
+                "y": 144.02038616093307
             }
         },
         "/home/arthur/Desktop/Python/plat/Assets/Levels/Objects.tsx": {
@@ -307,18 +307,18 @@
     ],
     "project": "levels.tiled-project",
     "recentFiles": [
-        "/home/arthur/Desktop/Python/plat/Assets/Levels/FA5B.tmx",
-        "/home/arthur/Desktop/Python/plat/Assets/Levels/4F09.tmx",
-        "/home/arthur/Desktop/Python/plat/Assets/Levels/1C11.tmx",
-        "/home/arthur/Desktop/Python/plat/Assets/Levels/5F4A.tmx",
-        "/home/arthur/Desktop/Python/plat/Assets/Levels/07D3.tmx",
-        "/home/arthur/Desktop/Python/plat/Assets/Levels/9A0E.tmx",
+        "/home/arthur/Desktop/Python/plat/Assets/Levels/Enemies.tsx",
+        "/home/arthur/Desktop/Python/plat/Assets/Levels/D1CD.tmx",
         "/home/arthur/Desktop/Python/plat/Assets/Levels/39C4.tmx",
-        "/home/arthur/Desktop/Python/plat/Assets/Levels/93C9.tmx",
+        "/home/arthur/Desktop/Python/plat/Assets/Levels/1C11.tmx",
+        "/home/arthur/Desktop/Python/plat/Assets/Levels/2031.tmx",
+        "/home/arthur/Desktop/Python/plat/Assets/Levels/FA5B.tmx",
+        "/home/arthur/Desktop/Python/plat/Assets/Levels/5258.tmx",
+        "/home/arthur/Desktop/Python/plat/Assets/Levels/F492.tmx",
         "/home/arthur/Desktop/Python/plat/Assets/Levels/240F.tmx",
-        "/home/arthur/Desktop/Python/plat/Assets/Levels/483C.tmx",
-        "/home/arthur/Desktop/Python/plat/Assets/Levels/822B.tmx",
-        "/home/arthur/Desktop/Python/plat/Assets/Levels/1979.tmx"
+        "/home/arthur/Desktop/Python/plat/Assets/Levels/1979.tmx",
+        "/home/arthur/Desktop/Python/plat/Assets/Levels/07D3.tmx",
+        "/home/arthur/Desktop/Python/plat/Assets/Levels/4F09.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {

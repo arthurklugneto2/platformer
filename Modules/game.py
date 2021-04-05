@@ -240,4 +240,35 @@ class Game:
                     if obj.y == y:
                         return obj
         return None
-        
+    
+    def addEnemy(self,enemy):
+        enemyParts = enemy.split('|')
+        enemyName = enemyParts[0]
+        enemyPositionX = self.get('pX',enemy)
+        enemyPositionY = self.get('pY',enemy)
+        enemyAddParams = ''
+        enemyCode = 0
+        tileSize = 32
+
+        if enemyName == 'slime':
+            enemyCode = self.enemySystem.codeSlime
+            enemyX = self.get('x',enemy)
+            enemyY = self.get('y',enemy)
+            enemyAddParams += 'x:'+enemyX+','
+            enemyAddParams += 'y:'+enemyX+''
+
+        if enemyName == 'bat':
+            enemyCode = self.enemySystem.codeBat
+
+        enemy = self.enemySystem.createEnemy(enemyCode,enemyAddParams,self,
+                int(enemyPositionX) * tileSize,int(enemyPositionY) * tileSize,tileSize,tileSize)
+        if enemy != None:
+            self.enemies.append( enemy )
+
+    def get(self,name,item):
+        parts = item.split('|')
+        for part in parts:
+            partParams = part.split('-')
+            if partParams[0] == name:
+                return partParams[1]
+        return None

@@ -52,9 +52,6 @@ class Player:
         # Player Weapon
         self.usingWeapon = False
         self.hasDoneUsingWeapon = False
-        self.weaponTime = 15
-        self.weaponMaxTime = 15
-        self.weapon = 'whip'
         
         # Collision Stuff
         self.last_y = y
@@ -86,49 +83,48 @@ class Player:
 
     def draw(self, display,camera):
 
-        if not self.usingWeapon:
-            if self.hurtTimer != 0:
-                if self.hurtTimer % 5 == 0: self.flipFlop = not self.flipFlop
+        if self.hurtTimer != 0:
+            if self.hurtTimer % 5 == 0: self.flipFlop = not self.flipFlop
 
-            if self.hurtTimer == 0 or (self.hurtTimer > 0 and self.flipFlop):
-                if not self.isOnGround and self.jumpVel > self.currG:
-                    if self.pastState == "RUN_RIGHT":
-                        display.blit(self.player_jump, (self.x+camera.x, self.y+camera.y))
-                    else:
-                        display.blit(pygame.transform.flip(self.player_jump, 1, 0), (self.x+camera.x, self.y+camera.y))
-                elif not self.isOnGround:
-                    if self.pastState == "RUN_RIGHT":
-                        display.blit(self.player_fall, (self.x+camera.x, self.y+camera.y))
-                    else:
-                        display.blit(pygame.transform.flip(self.player_fall, 1, 0), (self.x+camera.x, self.y+camera.y))
-                elif self.state == "IDLE_RIGHT":
-                    display.blit(self.idle[self.idle_state % self.idle_length], (self.x+camera.x, self.y+camera.y))
-                    if self.currDelay == self.delay:
-                        self.idle_state += 1
-                        self.currDelay = 0
-                    else:
-                        self.currDelay += 1
-                elif self.state == "IDLE_LEFT":
-                    display.blit(pygame.transform.flip(self.idle[self.idle_state % self.idle_length], 1, 0), (self.x+camera.x, self.y+camera.y))
-                    if self.currDelay == self.delay:
-                        self.idle_state += 1
-                        self.currDelay = 0
-                    else:
-                        self.currDelay += 1
-                elif self.state == "RUN_RIGHT":
-                    display.blit(self.run[self.run_state % self.run_length], (self.x+camera.x, self.y+camera.y))
-                    if self.currDelay == self.delay:
-                        self.run_state += 1
-                        self.currDelay = 0
-                    else:
-                        self.currDelay += 1
-                elif self.state == "RUN_LEFT":
-                    display.blit(pygame.transform.flip(self.run[self.run_state % self.run_length], 1, 0), (self.x+camera.x, self.y+camera.y))
-                    if self.currDelay == self.delay:
-                        self.run_state += 1
-                        self.currDelay = 0
-                    else:
-                        self.currDelay += 1
+        if self.hurtTimer == 0 or (self.hurtTimer > 0 and self.flipFlop):
+            if not self.isOnGround and self.jumpVel > self.currG:
+                if self.pastState == "RUN_RIGHT":
+                    display.blit(self.player_jump, (self.x+camera.x, self.y+camera.y))
+                else:
+                    display.blit(pygame.transform.flip(self.player_jump, 1, 0), (self.x+camera.x, self.y+camera.y))
+            elif not self.isOnGround:
+                if self.pastState == "RUN_RIGHT":
+                    display.blit(self.player_fall, (self.x+camera.x, self.y+camera.y))
+                else:
+                    display.blit(pygame.transform.flip(self.player_fall, 1, 0), (self.x+camera.x, self.y+camera.y))
+            elif self.state == "IDLE_RIGHT":
+                display.blit(self.idle[self.idle_state % self.idle_length], (self.x+camera.x, self.y+camera.y))
+                if self.currDelay == self.delay:
+                    self.idle_state += 1
+                    self.currDelay = 0
+                else:
+                    self.currDelay += 1
+            elif self.state == "IDLE_LEFT":
+                display.blit(pygame.transform.flip(self.idle[self.idle_state % self.idle_length], 1, 0), (self.x+camera.x, self.y+camera.y))
+                if self.currDelay == self.delay:
+                    self.idle_state += 1
+                    self.currDelay = 0
+                else:
+                    self.currDelay += 1
+            elif self.state == "RUN_RIGHT":
+                display.blit(self.run[self.run_state % self.run_length], (self.x+camera.x, self.y+camera.y))
+                if self.currDelay == self.delay:
+                    self.run_state += 1
+                    self.currDelay = 0
+                else:
+                    self.currDelay += 1
+            elif self.state == "RUN_LEFT":
+                display.blit(pygame.transform.flip(self.run[self.run_state % self.run_length], 1, 0), (self.x+camera.x, self.y+camera.y))
+                if self.currDelay == self.delay:
+                    self.run_state += 1
+                    self.currDelay = 0
+                else:
+                    self.currDelay += 1
 
         # Collision Stuff
         self.last_y = self.y
@@ -141,94 +137,80 @@ class Player:
 
     def update(self, keys):
 
-        if self.weapon != None and not self.usingWeapon:
-            # Horizontal Movement
-            stall = self.x
-            if keys[pygame.K_d] and keys[pygame.K_a]:
-                self.speed = 0
+        # Horizontal Movement
+        stall = self.x
+        if keys[pygame.K_d] and keys[pygame.K_a]:
+            self.speed = 0
+        else:
+            if keys[pygame.K_d]:
+                if self.speed <= self.maxSpeed:
+                    self.speed += self.acc
+                self.x += self.speed
+                self.state = "RUN_RIGHT"
+                self.pastState = "RUN_RIGHT"
+                self.orientation = "RIGHT"
+            elif keys[pygame.K_a]:
+                if self.speed <= self.maxSpeed:
+                    self.speed += self.acc
+                self.x -= self.speed
+                self.state = "RUN_LEFT"
+                self.pastState = "RUN_LEFT"
+                self.orientation = "LEFT"
             else:
-                if keys[pygame.K_d]:
-                    if self.speed <= self.maxSpeed:
-                        self.speed += self.acc
-                    self.x += self.speed
-                    self.state = "RUN_RIGHT"
-                    self.pastState = "RUN_RIGHT"
-                    self.orientation = "RIGHT"
-                elif keys[pygame.K_a]:
-                    if self.speed <= self.maxSpeed:
-                        self.speed += self.acc
-                    self.x -= self.speed
-                    self.state = "RUN_LEFT"
-                    self.pastState = "RUN_LEFT"
-                    self.orientation = "LEFT"
+                if self.pastState == "RUN_RIGHT" or self.pastState == "JUMP_RIGHT":
+                    self.state = "IDLE_RIGHT"
+                elif self.pastState == "RUN_LEFT" or self.pastState == "JUMP_LEFT":
+                    self.state = "IDLE_LEFT"
+        if stall == self.x:
+            self.speed = 0
+
+        if not self.isOnVine:
+            # Jumping
+            if self.isOnGround and (keys[pygame.K_SPACE] or keys[pygame.K_w]):
+                self.jumpVel = self.jumpMax
+                self.isOnGround = False
+            if self.isOnGround:
+                self.jumpVel = 0
+            if not self.isOnGround and self.jumpVel > self.currG:
+                self.state = "JUMP"
+            self.y -= self.jumpVel
+
+            if self.canDoubleJump and not self.hasDoubleJumped and self.accY < 0 and (keys[pygame.K_SPACE] or keys[pygame.K_w]):
+                self.currG = 0
+                self.hasDoubleJumped = True
+
+        else:
+            # Vine Movement
+            if keys[pygame.K_w]:
+                self.y -= self.vineSpeed
+            elif keys[pygame.K_s]:
+                self.y += self.vineSpeed
+
+        # Gravity, only apply if
+        # player is not on vine
+        if not self.isOnVine:
+            if not self.isOnGround:
+                if self.isOnWater:
+                    if self.currG <= self.maxGWater:
+                        self.currG += self.gAccWater
+                    self.y += self.currG
                 else:
-                    if self.pastState == "RUN_RIGHT" or self.pastState == "JUMP_RIGHT":
-                        self.state = "IDLE_RIGHT"
-                    elif self.pastState == "RUN_LEFT" or self.pastState == "JUMP_LEFT":
-                        self.state = "IDLE_LEFT"
-            if stall == self.x:
-                self.speed = 0
-
-            if not self.isOnVine:
-                # Jumping
-                if self.isOnGround and (keys[pygame.K_SPACE] or keys[pygame.K_w]):
-                    self.jumpVel = self.jumpMax
-                    self.isOnGround = False
-                if self.isOnGround:
-                    self.jumpVel = 0
-                if not self.isOnGround and self.jumpVel > self.currG:
-                    self.state = "JUMP"
-                self.y -= self.jumpVel
-
-                if self.canDoubleJump and not self.hasDoubleJumped and self.accY < 0 and (keys[pygame.K_SPACE] or keys[pygame.K_w]):
-                    self.currG = 0
-                    self.hasDoubleJumped = True
-
+                    if self.currG <= self.maxG:
+                        self.currG += self.gAcc
+                    self.y += self.currG         
             else:
-                # Vine Movement
-                if keys[pygame.K_w]:
-                    self.y -= self.vineSpeed
-                elif keys[pygame.K_s]:
-                    self.y += self.vineSpeed
-
-            # Gravity, only apply if
-            # player is not on vine
-            if not self.isOnVine:
-                if not self.isOnGround:
-                    if self.isOnWater:
-                        if self.currG <= self.maxGWater:
-                            self.currG += self.gAccWater
-                        self.y += self.currG
-                    else:
-                        if self.currG <= self.maxG:
-                            self.currG += self.gAcc
-                        self.y += self.currG         
-                else:
-                    self.currG = 0
-            
-            # Reset Back isOnVine
-            self.isOnVine = False
-            # Reset is on Water
-            self.isOnWater = False
-
-        # Weapon
-        if (keys[pygame.K_q]) and self.weaponTime == 0:
-            self.weaponTime = self.weaponMaxTime
-            self.usingWeapon = True
-            self.useWeapon()
-            self.hasDoneUsingWeapon = True        
+                self.currG = 0
+        
+        # Reset Back isOnVine
+        self.isOnVine = False
+        # Reset is on Water
+        self.isOnWater = False
+      
 
         self.accY = self.last_y-self.y
         
         self.hurtTimer -= 1
-        self.weaponTime -= 1
         if self.hurtTimer <= 0 : self.hurtTimer = 0
-        if self.weaponTime <= 0 :
-            self.usingWeapon = False
-            if self.hasDoneUsingWeapon:
-                self.doneWeapon()
-            self.hasDoneUsingWeapon = False
-            self.weaponTime = 0
         
     def hurt(self, enemy,game):
         if self.hurtTimer == 0:
@@ -254,10 +236,3 @@ class Player:
             elif isinstance(enemy, Spike):
                 self.hurt(enemy,game)
 
-    def useWeapon(self):
-        if self.game != None and self.weapon != None:
-            print('Use Weapon')
-                    
-    def doneWeapon(self):
-        if self.game != None and self.weapon != None:
-            print('Done use weapon')

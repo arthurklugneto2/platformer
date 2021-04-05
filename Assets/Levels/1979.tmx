@@ -48,7 +48,6 @@
  <layer id="3" name="OB" width="20" height="10">
   <properties>
    <property name="12,8" value="give_player:hearth|1,give_player:life|2"/>
-   <property name="16,8" value="name:1979"/>
    <property name="4,7" value="amount:3"/>
    <property name="9,3" value="map:483C,x:2,y:2,coin"/>
    <property name="9,8" value="DIALOG:logs.log1.1,DIALOG:logs.log1.2"/>

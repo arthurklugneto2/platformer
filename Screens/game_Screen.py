@@ -78,8 +78,8 @@ class GameScreen(Screen):
 
         levelName = '1979'
         levelPos = [2,3]
-        #levelName = 'D1CD'
-        #levelPos = [21,7]
+        # levelName = '39C4'
+        # levelPos = [13,2]
 
         if commandMapName != None:
             levelName = commandMapName

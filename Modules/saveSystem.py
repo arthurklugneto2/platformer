@@ -73,7 +73,7 @@ class SaveSystem:
             health = save['playerLife']
             maxHealth = save['playerMaxLife']
             lives = save['playerLives']
-            doubleJumb = save['playerDoubleJump']
+            doubleJump = save['playerDoubleJump']
 
             objectOnce = save['objectsOnce']
             solvedPuzzles = save['solvedPuzzles']
@@ -88,6 +88,7 @@ class SaveSystem:
             game.player.health = health
             game.player.maxHealth = maxHealth
             game.player.lives = lives
+            game.player.canDoubleJump = doubleJump
 
             game.objectsOnce = objectOnce
             game.solvedPuzzles = solvedPuzzles

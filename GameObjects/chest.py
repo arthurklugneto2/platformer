@@ -60,7 +60,10 @@ class Chest(GameObject):
         self.inContactWithPlayer = True
 
     def activationEvent(self):
-        # Give Player
+        
+        '''
+            Give Player
+        '''
         self.game.audioSystem.playSFX('boss_dead');
         givePlayers = self.getMany('give_player')
         for givePlayer in givePlayers:
@@ -70,7 +73,9 @@ class Chest(GameObject):
             message = Lang.__('player.receive',amount,item)
             self.game.queueSystem.addItem( QueueItem('GIVE_PLAYER',parts[0]+':'+parts[1],message) )
         
-        # Player Skill
+        '''
+            Player Status
+        '''
         playerStatusChanges = self.getMany('player')
         for playerStatusChange in playerStatusChanges:
             parts = playerStatusChange.split('|')
@@ -78,3 +83,10 @@ class Chest(GameObject):
             amount = parts[1]
             message = Lang.__('player.skill.double_jump')
             self.game.queueSystem.addItem( QueueItem('PLAYER_SKILL',parts[0]+':'+parts[1],message,True) )
+
+        '''
+            Summon Enemy
+        '''
+        enemySummons = self.getMany('enemy')
+        for enemy in enemySummons:
+            self.game.addEnemy(enemy)
