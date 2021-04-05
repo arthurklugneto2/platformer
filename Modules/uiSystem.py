@@ -7,25 +7,26 @@ import math
 
 class UISystem:
 
-    def __init__(self):
-        self.defaultFont = pygame.font.Font("./Assets/Fonts/default.ttf", 16)
-        self.displayFont = pygame.font.Font("./Assets/Fonts/display.ttf", 16)
-        self.iconFont = pygame.font.Font("./Assets/Fonts/icons.ttf", 32)
+    def __init__(self,screenSize,screenScale):
+        self.scale = screenScale
+        self.screenSize = screenSize
+        self.defaultFont = pygame.font.Font("./Assets/Fonts/default.ttf", 16*screenScale)
+        self.displayFont = pygame.font.Font("./Assets/Fonts/display.ttf", 16*screenScale)
 
         self.pathPrefix = './Assets/UI/'
 
         self.dialogTimerReset = 60
         self.dialogTimer = 60
 
-        self.bgRectangle = pygame.Surface((512,30))
+        self.bgRectangle = pygame.Surface((screenSize[0],30*screenScale))
         self.bgRectangle.set_alpha(220)
         self.bgRectangle.fill((0,0,0))
 
-        self.messageRectangle = pygame.Surface((400,40))
+        self.messageRectangle = pygame.Surface((400*screenScale,40*screenScale))
         self.messageRectangle.set_alpha(220)
         self.messageRectangle.fill((0,0,0))
         
-        self.dialogRectangle = pygame.Surface((400,200))
+        self.dialogRectangle = pygame.Surface((400*screenScale,200*screenScale))
         self.dialogRectangle.set_alpha(30)
         self.dialogRectangle.fill((255,255,255))
 
@@ -34,10 +35,10 @@ class UISystem:
         self.hearthIcon = pygame.image.load(self.pathPrefix+'hearth.png')
         self.hearthEmptyIcon = pygame.image.load(self.pathPrefix+'hearth_empty.png')
 
-        self.hearthIcon = pygame.transform.scale( self.hearthIcon , (16,12) )
-        self.hearthEmptyIcon = pygame.transform.scale( self.hearthEmptyIcon , (16,12) )
-        self.keyIcon = pygame.transform.scale( self.keyIcon , (16,22) )
-        self.coinIcon = pygame.transform.scale( self.coinIcon , (14,20) )
+        self.hearthIcon = pygame.transform.scale( self.hearthIcon , (16*screenScale,12*screenScale) )
+        self.hearthEmptyIcon = pygame.transform.scale( self.hearthEmptyIcon , (16*screenScale,12*screenScale) )
+        self.keyIcon = pygame.transform.scale( self.keyIcon , (16*screenScale,22*screenScale) )
+        self.coinIcon = pygame.transform.scale( self.coinIcon , (14*screenScale,20*screenScale) )
 
         self.messages = []
         self.dialogs = []
@@ -45,27 +46,27 @@ class UISystem:
     def update(self,game,keys):
 
         # Black Rectangle
-        game.display.blit( self.bgRectangle , (0,game.screenSize[1]-30) )
+        game.display.blit( self.bgRectangle , (0,game.screenSize[1]-(30*self.scale)) )
 
         # Player Keys
         keys_number = self.defaultFont.render(str(game.player.keys),False,(255,255,255))
-        game.display.blit(keys_number,(game.screenSize[0]-36,game.screenSize[1]-26))
-        game.display.blit(self.keyIcon,(game.screenSize[0]-60,game.screenSize[1]-26))
+        game.display.blit(keys_number,(game.screenSize[0]-(36*self.scale),game.screenSize[1]-(26*self.scale)))
+        game.display.blit(self.keyIcon,(game.screenSize[0]-(60*self.scale),game.screenSize[1]-(26*self.scale)))
 
         # Player Coins
         coins_number = self.defaultFont.render(str(game.player.coins),False,(255,255,255))
-        game.display.blit(coins_number,(game.screenSize[0]-126,game.screenSize[1]-26))
-        game.display.blit(self.coinIcon,(game.screenSize[0]-150,game.screenSize[1]-25))
+        game.display.blit(coins_number,(game.screenSize[0]-(126*self.scale),game.screenSize[1]-(26*self.scale)))
+        game.display.blit(self.coinIcon,(game.screenSize[0]-(150*self.scale),game.screenSize[1]-(25*self.scale)))
 
         # Player Health
         lives_number = self.defaultFont.render(str(game.player.lives),False,(255,255,255))
-        game.display.blit(lives_number,(10,game.screenSize[1]-26))
+        game.display.blit(lives_number,(10,game.screenSize[1]-(26*self.scale)))
         healthCalc = game.player.health
         for x in range( game.player.maxHealth ):
             if healthCalc > 0:
-                game.display.blit(self.hearthIcon,(x * 20+38,game.screenSize[1]-21))
+                game.display.blit(self.hearthIcon,(x * 20 * self.scale +(38* self.scale),game.screenSize[1]-(21*self.scale)))
             else:
-                game.display.blit(self.hearthEmptyIcon,(x * 20+38,game.screenSize[1]-21))
+                game.display.blit(self.hearthEmptyIcon,(x * 20*self.scale +(38* self.scale),game.screenSize[1]-(21*self.scale)))
             healthCalc -= 1
 
         # Display UI Messages
@@ -73,9 +74,9 @@ class UISystem:
             if self.messages[0].time == 0:
                 self.messages.pop(0)
             else:
-                game.display.blit( self.messageRectangle , (50,game.screenSize[1]-80) )
+                game.display.blit( self.messageRectangle , ((50* self.scale),game.screenSize[1]-(80* self.scale)) )
                 text_message = self.defaultFont.render(self.messages[0].message,False,(255,255,255))
-                game.display.blit(text_message,(64,game.screenSize[1]-72))
+                game.display.blit(text_message,((64* self.scale),game.screenSize[1]-(72* self.scale)))
                 self.messages[0].time -= 1
 
         if len(self.dialogs) > 0 and len(self.messages) == 0:
@@ -107,13 +108,13 @@ class UISystem:
                 self.dialogTimer = self.dialogTimerReset
             
             self.dialogRectangle.fill((178,148,122))
-            game.display.blit(self.dialogRectangle,(50,50))
+            game.display.blit(self.dialogRectangle,(50* self.scale,50* self.scale))
             self.dialogRectangle.fill((46,34,47))
-            game.display.blit(self.dialogRectangle,(54,54))
-            remainingText = self.drawText( game.display,dialogText,(199,220,208),Rect(60,60,380,180),self.defaultFont)
+            game.display.blit(self.dialogRectangle,(54* self.scale,54* self.scale))
+            remainingText = self.drawText( game.display,dialogText,(199,220,208),Rect(60* self.scale,60* self.scale,380* self.scale,180* self.scale),self.defaultFont)
           
             game.display.blit(self.defaultFont
-                .render(Lang.__('dialog.continue'),False,(0,0,0)),(60,220))
+                .render(Lang.__('dialog.continue'),False,(0,0,0)),(60* self.scale,220* self.scale))
             if keys[pygame.K_e] and self.dialogTimer == 0:
                 if remainingText != '':
                     self.dialogs.append(UIDialog(remainingText))

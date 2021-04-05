@@ -31,10 +31,10 @@ class GameScreen(Screen):
     def __init__(self):
         self.name = "GAME_SCREEN"
     
-    def create(self,buffer,display,screenSize):
+    def create(self,buffer,display,screenSize,screenScale):
         self.createGameObjects()
         self.createPlayer()
-        self.createGame(buffer,display,screenSize)
+        self.createGame(buffer,display,screenSize,screenScale)
 
         self.loadInitialMap()
 
@@ -59,11 +59,11 @@ class GameScreen(Screen):
         player_height = 32
         self.player = Player(0,0, player_width, player_height)
 
-    def createGame(self,buffer,display,screenSize):
+    def createGame(self,buffer,display,screenSize,screenScale):
         self.game = Game(self.player,self.objects,self.quadTree,self.objectsTopLayer,self.objectsWaterLayer,self.objectsOnce,
             self.enemies,buffer,display,screenSize,
             self.camera,AnimationSystem(),GameObjectSystem(),
-            UISystem(),EnemySystem(),QueueSystem(),SwitchSystem(),EffectsSystem(),
+            UISystem(screenSize,screenScale),EnemySystem(),QueueSystem(),SwitchSystem(),EffectsSystem(),
             SaveSystem(),AudioSystem(),self.puzzles,self.solvedPuzzles,self.activationPersist)
 
     def loadInitialMap(self):
