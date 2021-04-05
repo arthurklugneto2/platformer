@@ -10,7 +10,7 @@ class ScreenSystem(object):
         # Game Screen
         self.screens.append( GameScreen() )
 
-    def loadScreeen(self,name,buffer,display,screenSize):
+    def loadScreeen(self,name,buffer,display,screenSize,scale):
         if self.currentScreen != None:
             self.currentScreen.destroy()
             self.currentScreen = None
@@ -18,7 +18,7 @@ class ScreenSystem(object):
         newScreen = self.getScreenByName(name)
         if newScreen != None:
             self.currentScreen = newScreen
-            newScreen.create(buffer,display,screenSize)
+            newScreen.create(buffer,display,screenSize,scale)
 
     def getScreenByName(self,name):
         for x in self.screens:

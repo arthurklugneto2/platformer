@@ -9,9 +9,12 @@ applicationDone = False
 # ============================
 # Global Variables
 # ============================
-WIDTH = 512
-HEIGHT = 320
-SCALE = 1
+# WIDTH = 512
+# HEIGHT = 320
+# SCALE = 1
+WIDTH = 1024
+HEIGHT = 640
+SCALE = 2
 display = None
 clock = None
 buffer = None
@@ -42,7 +45,7 @@ def setup():
     # load screen System and initial screen
     global screenSystem
     screenSystem = ScreenSystem()
-    screenSystem.loadScreeen('GAME_SCREEN',buffer,display,(WIDTH,HEIGHT))
+    screenSystem.loadScreeen('GAME_SCREEN',buffer,display,(WIDTH,HEIGHT),SCALE)
 setup()
 
 # ===========================
