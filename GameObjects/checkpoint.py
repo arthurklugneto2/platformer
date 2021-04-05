@@ -15,14 +15,19 @@ class Checkpoint(GameObject):
         self.setProperties(properties)
         self.x, self.y, self.w, self.h = x, y, 32, 32
         self.startQTBoundaries(self.x,self.y,self.w,self.h)
+        self.isSaveGame = False
 
         self.sprite = SpriteSheet(pygame.image.load(self.spritePath))
         self.off = self.sprite.getimage(0,0,self.spriteBaseSize,self.spriteBaseSize)
         self.on = self.sprite.getimage(16,0,self.spriteBaseSize,self.spriteBaseSize)
+        self.onSave = self.sprite.getimage(32,0,self.spriteBaseSize,self.spriteBaseSize)
 
         self.name = None
         if self.have('name'):
             self.name = self.get('name')
+
+        if self.have('save'):
+            self.isSaveGame = True
             
         self.collide = True
         self.collectable = True
@@ -32,8 +37,12 @@ class Checkpoint(GameObject):
 
     def draw(self, display,camera):
         if self.isActivated:
-            display.blit(pygame.transform.scale(self.on,
-                (self.w, self.h)), (self.x+camera.x, self.y+camera.y))
+            if not self.isSaveGame:
+                display.blit(pygame.transform.scale(self.on,
+                    (self.w, self.h)), (self.x+camera.x, self.y+camera.y))
+            else:
+                display.blit(pygame.transform.scale(self.onSave,
+                    (self.w, self.h)), (self.x+camera.x, self.y+camera.y))
         else:
             display.blit(pygame.transform.scale(self.off,
                 (self.w, self.h)), (self.x+camera.x, self.y+camera.y))
@@ -53,7 +62,10 @@ class Checkpoint(GameObject):
 
     def activationEvent(self):
         self.isActivated = True
-        self.game.saveSystem.saveCheckpoint(self,self.game)
+        if not self.isSaveGame:
+            self.game.saveSystem.saveCheckpoint(self,self.game)
+        else:
+            self.game.saveSystem.saveGame(self,self.game)
 
     def deactivationEvent(self):
         pass
