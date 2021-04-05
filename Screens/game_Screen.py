@@ -88,7 +88,10 @@ class GameScreen(Screen):
             levelPos[1] = 0
 
         initialLoction = (levelPos[0] * 32,levelPos[1] * 32)
+
         self.game.loadLevel(levelName,self.objects,self.enemies,self.objectsTopLayer,self.objectsWaterLayer,initialLoction,commandMap)
+        if self.game.saveSystem.hasSaveFile() and not commandMap:
+            self.game.saveSystem.loadGame(self.game)
 
     def update(self,keys):
 

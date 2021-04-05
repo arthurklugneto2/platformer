@@ -16,8 +16,8 @@ class Player:
         # Itens and Status
         self.keys = 0
         self.coins = 0
-        self.health = 4
-        self.maxHealth = 4
+        self.health = 2
+        self.maxHealth = 2
         self.lives = 3
         self.hurtTimer = 0
         self.hurtMaxTimer = 180
@@ -240,7 +240,7 @@ class Player:
                 game.saveSystem.loadCheckpoint(game)
 
             if self.lives == 0 and self.health == 0:
-                game.saveSystem.loadInitial(game)
+                game.saveSystem.loadGame(game)
 
             self.hurtTimer = self.hurtMaxTimer
         if self.health < 0 : self.health = 0
