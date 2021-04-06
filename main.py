@@ -9,12 +9,12 @@ applicationDone = False
 # ============================
 # Global Variables
 # ============================
-# WIDTH = 512
-# HEIGHT = 320
-# SCALE = 1
-WIDTH = 1024
-HEIGHT = 640
-SCALE = 2
+WIDTH = 512
+HEIGHT = 320
+SCALE = 1
+# WIDTH = 1024
+# HEIGHT = 640
+# SCALE = 2
 display = None
 clock = None
 buffer = None

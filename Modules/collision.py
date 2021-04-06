@@ -6,6 +6,7 @@ from GameObjects.coin import Coin
 from GameObjects.waterSurface import WaterSurface
 from Objects.water import Water
 from Objects.ground import Ground
+from Objects.enemy import Enemy
 
 def player_check(player, obj,game):
 
@@ -100,3 +101,18 @@ def bullet_check(bullet,game):
                     
                     if bullet in game.objectsWeapon:
                         game.objectsWeapon.remove(bullet)
+
+def bullet_enemy_check(bullet,game,enemies):
+
+    # Check if there is collision with the enemy
+    for enemy in enemies:
+        rect1 = {'x':bullet.x,'y':bullet.y,'width':bullet.w,'height':bullet.h}
+        rect2 = {'x':enemy.x,'y':enemy.y,'width':enemy.w,'height':enemy.h}
+        if rect1['x'] < rect2['x'] + rect2['width'] and \
+            rect1['x'] + rect1['width'] > rect2['x'] and \
+            rect1['y'] < rect2['y'] + rect2['height'] and \
+            rect1['y'] + rect1['height'] > rect2['y']:
+                enemy.hurt()
+                if bullet in game.objectsWeapon:
+                        game.objectsWeapon.remove(bullet)
+    

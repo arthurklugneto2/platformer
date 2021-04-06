@@ -30,6 +30,10 @@ class QueueSystem:
         
         if item.command == 'GIVE_PLAYER':
             params = item.parameters.split(':')
+            
+            # ===================
+            # Collectables
+            # ===================
             if params[0] == 'life':
                 amount = int(params[1])
                 game.player.lives += amount
@@ -39,6 +43,13 @@ class QueueSystem:
                     game.player.health += amount
                 else:
                     game.player.health = game.player.maxHealth
+
+            # ===================
+            # Inventory
+            # ===================
+            if params[0] == 'pistol':
+                game.playerSystem.addItemToInventory('pistol',1)
+            
 
         if item.command == 'PLAYER_SKILL':
             params = item.parameters.split(':')

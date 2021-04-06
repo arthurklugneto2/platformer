@@ -70,8 +70,7 @@ class Chest(GameObject):
             parts = givePlayer.split('|')
             item = parts[0]
             amount = parts[1]
-            message = Lang.__('player.receive',amount,item)
-            self.game.queueSystem.addItem( QueueItem('GIVE_PLAYER',parts[0]+':'+parts[1],message) )
+            self.game.playerSystem.chestGivePlayer(item,amount,self.game)
         
         '''
             Player Status
@@ -81,12 +80,8 @@ class Chest(GameObject):
             parts = playerStatusChange.split('|')
             item = parts[0]
             amount = parts[1]
-            message = Lang.__('player.skill.double_jump')
-            self.game.queueSystem.addItem( QueueItem('PLAYER_SKILL',parts[0]+':'+parts[1],message,True) )
-
+            self.game.playerSystem.chestPlayer(item,amount,self.game)
         '''
             Summon Enemy
         '''
-        enemySummons = self.getMany('enemy')
-        for enemy in enemySummons:
-            self.game.addEnemy(enemy)
+        self.game.playerSystem.chestEnemy(self.getMany('enemy'),self.game)
