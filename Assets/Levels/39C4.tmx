@@ -54,7 +54,7 @@
  <layer id="4" name="OB" width="16" height="12">
   <properties>
    <property name="14,2" value="map:D1CD,x:6,y:25"/>
-   <property name="6,8" value="persist,enemy:bat|pX-1|pY-3,enemy:bat|pX-1|pY-4,enemy:bat|pX-1|pY-5,enemy:bat|pX-12|pY-3,enemy:bat|pX-12|pY-4,enemy:bat|pX-12|pY-5"/>
+   <property name="6,8" value="persist,enemy:bat|pX-1|pY-3,enemy:bat|pX-1|pY-4,enemy:bat|pX-1|pY-5,enemy:bat|pX-12|pY-3,enemy:bat|pX-12|pY-4,enemy:bat|pX-12|pY-5,give_player:pistol|1"/>
   </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,

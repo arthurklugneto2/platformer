@@ -3,6 +3,8 @@ import pygame
 from pygame.math import Vector2
 from Objects.indentoryItem import InventoryItem
 from GameObjects.player.pistol_shot import PistolShot
+from Modules.lang import Lang
+from Modules.queue_item import QueueItem
 
 class PlayerSystem:
 
@@ -14,11 +16,11 @@ class PlayerSystem:
         self.inventoryTime = 0
         self.inventoryTimeReset = 15
 
-        self.inventory.append(InventoryItem('pistol',1,self.inventoryImage))
+        #self.inventory.append(InventoryItem('pistol',1,self.inventoryImage))
         self.inventory.append(InventoryItem('no_item',0,self.inventoryImage))
         self.inventory.append(InventoryItem('no_item',0,self.inventoryImage))
         self.inventory.append(InventoryItem('no_item',0,self.inventoryImage))
-        self.inventory.append(InventoryItem('health_kit',3,self.inventoryImage))
+        #self.inventory.append(InventoryItem('health_kit',3,self.inventoryImage))
 
     def update(self,game,keys):
         self.updateInventory(game,keys)
@@ -37,7 +39,7 @@ class PlayerSystem:
                 if len(self.inventory) > 0:
                     self.inventoryIndex -= 1
                 self.inventoryTime = self.inventoryTimeReset
-            if keys[pygame.K_q]:
+            if keys[pygame.K_q] or pygame.mouse.get_pressed()[0]:
                 if len(self.inventory) > 0:
                     item = self.inventory[self.inventoryIndex % len(self.inventory)]
                     if item != None and item.canUse(game):
@@ -53,6 +55,7 @@ class PlayerSystem:
 
     def addItemToInventory(self,item,quantity):
         self.inventory.append(InventoryItem(item,quantity,self.inventoryImage))
+        self.inventoryIndex = len(self.inventory)-1
 
     def removeItemFromInventory(self,item):
         for x in self.inventory:
@@ -72,6 +75,19 @@ class PlayerSystem:
             return [prev,selc,next]
         return None
 
+    def chestGivePlayer(self,item,amount,game):
+        message = Lang.__('player.receive',amount,item)
+        game.queueSystem.addItem( QueueItem('GIVE_PLAYER',item+':'+amount,message) )
+
+    def chestPlayer(self,item,amount,game):
+        if item == 'double_jump':
+            message = Lang.__('player.skill.double_jump')
+            game.queueSystem.addItem( QueueItem('PLAYER_SKILL',item+':'+amount,message,True) )
+        
+    def chestEnemy(self, enemies,game):
+        for enemy in enemies:
+            game.addEnemy(enemy)        
+        
     # ==============================
     # Inventory - Use Itens
     # ==============================
