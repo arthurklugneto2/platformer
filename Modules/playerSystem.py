@@ -13,10 +13,15 @@ class PlayerSystem:
         self.inventory = []
         self.inventoryIndex = 0
         self.inventoryImage = pygame.image.load('Assets/Player/inventory.png')
-        self.inventoryTime = 0
-        self.inventoryTimeReset = 15
+        
+        self.inventoryTime = 30
+        self.inventoryTimeReset = 30
+        self.weaponUsageTime = 60
+        self.weaponUsageTimeReset = 60
 
-        #self.inventory.append(InventoryItem('pistol',1,self.inventoryImage))
+        self.weaponNames = ['pistol']
+
+        self.inventory.append(InventoryItem('pistol',1,self.inventoryImage))
         self.inventory.append(InventoryItem('no_item',0,self.inventoryImage))
         self.inventory.append(InventoryItem('no_item',0,self.inventoryImage))
         self.inventory.append(InventoryItem('no_item',0,self.inventoryImage))
@@ -39,10 +44,15 @@ class PlayerSystem:
                 if len(self.inventory) > 0:
                     self.inventoryIndex -= 1
                 self.inventoryTime = self.inventoryTimeReset
-            if keys[pygame.K_q] or pygame.mouse.get_pressed()[0]:
-                if len(self.inventory) > 0:
-                    item = self.inventory[self.inventoryIndex % len(self.inventory)]
-                    if item != None and item.canUse(game):
+
+        if keys[pygame.K_q] or pygame.mouse.get_pressed()[0]:
+            if len(self.inventory) > 0:
+                item = self.inventory[self.inventoryIndex % len(self.inventory)]
+                if item != None and item.canUse(game):
+                    if item.name in self.weaponNames and self.weaponUsageTime == 0:
+                        item.useItem(game)
+                        self.weaponUsageTime = self.weaponUsageTimeReset
+                    if item.name not in self.weaponNames and self.inventoryTime == 0:
                         item.useItem(game)
                         if item.isRemoveOnUse() and item.quantity <= 1:
                             self.inventory.remove(item)
@@ -50,7 +60,9 @@ class PlayerSystem:
                             item.quantity -= 1
                         self.inventoryTime = self.inventoryTimeReset
 
+        self.weaponUsageTime -= 1
         self.inventoryTime -= 1
+        if self.weaponUsageTime < 0 : self.weaponUsageTime = 0
         if self.inventoryTime < 0: self.inventoryTime = 0
 
     def addItemToInventory(self,item,quantity):

@@ -125,7 +125,7 @@ class GameScreen(Screen):
                 weapon.update()
                 bullet_check(weapon,self.game)
                 bullet_enemy_check(weapon,self.game,self.game.enemies)
-                if weapon.life <= 0:
+                if weapon.life <= 0 and weapon in self.objectsWeapon:
                     self.objectsWeapon.remove(weapon)
 
             self.game.effectsSystem.update()
