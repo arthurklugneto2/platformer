@@ -2,6 +2,7 @@
 <map version="1.4" tiledversion="1.4.3" orientation="orthogonal" renderorder="right-down" width="10" height="4" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="1">
  <tileset firstgid="1" source="Terrain.tsx"/>
  <tileset firstgid="1025" source="Objects.tsx"/>
+ <tileset firstgid="1153" source="Enemies.tsx"/>
  <layer id="1" name="BG" width="10" height="4">
   <data encoding="csv">
 257,257,257,257,257,257,257,257,257,257,
@@ -28,23 +29,24 @@
  </layer>
  <layer id="3" name="OB" width="10" height="4">
   <properties>
-   <property name="2,2" value="once"/>
    <property name="3,2" value="once"/>
-   <property name="4,2" value="once"/>
-   <property name="8,2" value="map:93C9,x:1,y:3"/>
+   <property name="8,2" value="map:93C9,x:1,y:3,enemy"/>
   </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,
-0,0,0,1027,1027,0,0,0,1026,0,
+0,0,0,1027,0,0,0,0,1026,0,
 0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
  <layer id="4" name="EN" width="10" height="4">
+  <properties>
+   <property name="2,2" value="x:7,y:2"/>
+  </properties>
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,
+0,0,1153,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>

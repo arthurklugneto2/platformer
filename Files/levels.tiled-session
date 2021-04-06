@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "/home/arthur/Desktop/Python/plat/Assets/Levels/1979.tmx",
+    "activeFile": "/home/arthur/Desktop/Python/plat/Assets/Levels/2031.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -37,11 +37,11 @@
             }
         },
         "/home/arthur/Desktop/Python/plat/Assets/Levels/07D3.tmx": {
-            "scale": 0.33,
-            "selectedLayer": 4,
+            "scale": 0.75,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 1583.333333333333,
-                "y": 701.5151515151515
+                "x": 430,
+                "y": 1284.6666666666665
             }
         },
         "/home/arthur/Desktop/Python/plat/Assets/Levels/1.tmx": {
@@ -70,7 +70,7 @@
             "scale": 0.797109375,
             "selectedLayer": 3,
             "viewCenter": {
-                "x": 305.4787807507596,
+                "x": 306.7333137312555,
                 "y": 319.2786435362149
             }
         },
@@ -84,15 +84,15 @@
         },
         "/home/arthur/Desktop/Python/plat/Assets/Levels/2031.tmx": {
             "scale": 0.797109375,
-            "selectedLayer": 3,
+            "selectedLayer": 4,
             "viewCenter": {
                 "x": 306.7333137312555,
-                "y": 462.2954033127512
+                "y": 245.26119768695483
             }
         },
         "/home/arthur/Desktop/Python/plat/Assets/Levels/240F.tmx": {
             "scale": 0.44894770408163265,
-            "selectedLayer": 4,
+            "selectedLayer": 3,
             "viewCenter": {
                 "x": 751.7579373535052,
                 "y": 128.07727821578231
@@ -129,15 +129,15 @@
             "scale": 1,
             "selectedLayer": 4,
             "viewCenter": {
-                "x": 332.5,
+                "x": 839.5,
                 "y": 80.5
             }
         },
         "/home/arthur/Desktop/Python/plat/Assets/Levels/4F09.tmx": {
             "scale": 1.9998579545454542,
-            "selectedLayer": 6,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 144.26024575609068,
+                "x": 160.2613822004404,
                 "y": 64.25456353434194
             }
         },
@@ -154,15 +154,15 @@
             "selectedLayer": 4,
             "viewCenter": {
                 "x": 112.15524845633635,
-                "y": 99.10810545917867
+                "y": 156.31480936979324
             }
         },
         "/home/arthur/Desktop/Python/plat/Assets/Levels/5F4A.tmx": {
             "scale": 0.75,
-            "selectedLayer": 4,
+            "selectedLayer": 3,
             "viewCenter": {
                 "x": 176.66666666666669,
-                "y": 735.3333333333333
+                "y": 1418
             }
         },
         "/home/arthur/Desktop/Python/plat/Assets/Levels/5_2.tmx": {
@@ -226,15 +226,15 @@
             "selectedLayer": 4,
             "viewCenter": {
                 "x": 145.2121924924042,
-                "y": 88.13094187983927
+                "y": 123.88513182397335
             }
         },
         "/home/arthur/Desktop/Python/plat/Assets/Levels/9A0E.tmx": {
             "scale": 3.464955357142857,
-            "selectedLayer": 6,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 79.7990079237261,
-                "y": 63.925787541068104
+                "x": 80.66481994459835,
+                "y": 47.47535914449527
             }
         },
         "/home/arthur/Desktop/Python/plat/Assets/Levels/A094.tmx": {
@@ -247,10 +247,10 @@
         },
         "/home/arthur/Desktop/Python/plat/Assets/Levels/AA6C.tmx": {
             "scale": 1.59421875,
-            "selectedLayer": 4,
+            "selectedLayer": 3,
             "viewCenter": {
                 "x": 145.2121924924042,
-                "y": 88.13094187983927
+                "y": 266.2746251102617
             }
         },
         "/home/arthur/Desktop/Python/plat/Assets/Levels/AFB8.tmx": {
@@ -258,7 +258,7 @@
             "selectedLayer": 6,
             "viewCenter": {
                 "x": 80.79192394393806,
-                "y": 255.4229148289719
+                "y": 369.83632265020094
             }
         },
         "/home/arthur/Desktop/Python/plat/Assets/Levels/D1CD.tmx": {
@@ -266,7 +266,7 @@
             "selectedLayer": 3,
             "viewCenter": {
                 "x": 697,
-                "y": 539
+                "y": 653
             }
         },
         "/home/arthur/Desktop/Python/plat/Assets/Levels/Enemies.tsx": {
@@ -275,18 +275,18 @@
         },
         "/home/arthur/Desktop/Python/plat/Assets/Levels/F492.tmx": {
             "scale": 1.59421875,
-            "selectedLayer": 6,
+            "selectedLayer": 3,
             "viewCenter": {
                 "x": 145.2121924924042,
-                "y": 266.90189160050966
+                "y": 124.51239831422133
             }
         },
         "/home/arthur/Desktop/Python/plat/Assets/Levels/FA5B.tmx": {
             "scale": 0.99638671875,
-            "selectedLayer": 4,
+            "selectedLayer": 3,
             "viewCenter": {
                 "x": 144.02038616093307,
-                "y": 144.02038616093307
+                "y": 200.22346368715088
             }
         },
         "/home/arthur/Desktop/Python/plat/Assets/Levels/Objects.tsx": {
@@ -304,22 +304,23 @@
     "map.tileWidth": 32,
     "map.width": 16,
     "openFiles": [
-        "/home/arthur/Desktop/Python/plat/Assets/Levels/1979.tmx"
+        "/home/arthur/Desktop/Python/plat/Assets/Levels/1C11.tmx",
+        "/home/arthur/Desktop/Python/plat/Assets/Levels/2031.tmx"
     ],
     "project": "levels.tiled-project",
     "recentFiles": [
-        "/home/arthur/Desktop/Python/plat/Assets/Levels/1979.tmx",
-        "/home/arthur/Desktop/Python/plat/Assets/Levels/39C4.tmx",
-        "/home/arthur/Desktop/Python/plat/Assets/Levels/Enemies.tsx",
-        "/home/arthur/Desktop/Python/plat/Assets/Levels/D1CD.tmx",
-        "/home/arthur/Desktop/Python/plat/Assets/Levels/1C11.tmx",
-        "/home/arthur/Desktop/Python/plat/Assets/Levels/2031.tmx",
         "/home/arthur/Desktop/Python/plat/Assets/Levels/FA5B.tmx",
-        "/home/arthur/Desktop/Python/plat/Assets/Levels/5258.tmx",
         "/home/arthur/Desktop/Python/plat/Assets/Levels/F492.tmx",
+        "/home/arthur/Desktop/Python/plat/Assets/Levels/822B.tmx",
+        "/home/arthur/Desktop/Python/plat/Assets/Levels/483C.tmx",
         "/home/arthur/Desktop/Python/plat/Assets/Levels/240F.tmx",
+        "/home/arthur/Desktop/Python/plat/Assets/Levels/39C4.tmx",
+        "/home/arthur/Desktop/Python/plat/Assets/Levels/9A0E.tmx",
         "/home/arthur/Desktop/Python/plat/Assets/Levels/07D3.tmx",
-        "/home/arthur/Desktop/Python/plat/Assets/Levels/4F09.tmx"
+        "/home/arthur/Desktop/Python/plat/Assets/Levels/5F4A.tmx",
+        "/home/arthur/Desktop/Python/plat/Assets/Levels/4F09.tmx",
+        "/home/arthur/Desktop/Python/plat/Assets/Levels/1C11.tmx",
+        "/home/arthur/Desktop/Python/plat/Assets/Levels/AFB8.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
