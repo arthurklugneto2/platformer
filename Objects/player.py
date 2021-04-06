@@ -17,7 +17,7 @@ class Player:
         self.keys = 0
         self.coins = 0
         self.health = 2
-        self.maxHealth = 2
+        self.maxHealth = 4
         self.lives = 3
         self.hurtTimer = 0
         self.hurtMaxTimer = 180

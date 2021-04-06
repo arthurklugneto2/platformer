@@ -3,7 +3,7 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "",
+    "activeFile": "/home/arthur/Desktop/Python/plat/Assets/Levels/1979.tmx",
     "expandedProjectPaths": [
     ],
     "file.lastUsedOpenFilter": "All Files (*)",
@@ -57,7 +57,7 @@
         },
         "/home/arthur/Desktop/Python/plat/Assets/Levels/1979.tmx": {
             "scale": 1.0475446428571429,
-            "selectedLayer": 4,
+            "selectedLayer": 3,
             "viewCenter": {
                 "x": 304.04432132963984,
                 "y": 161.80694651608778
@@ -304,19 +304,20 @@
     "map.tileWidth": 32,
     "map.width": 16,
     "openFiles": [
+        "/home/arthur/Desktop/Python/plat/Assets/Levels/1979.tmx"
     ],
     "project": "levels.tiled-project",
     "recentFiles": [
+        "/home/arthur/Desktop/Python/plat/Assets/Levels/1979.tmx",
+        "/home/arthur/Desktop/Python/plat/Assets/Levels/39C4.tmx",
         "/home/arthur/Desktop/Python/plat/Assets/Levels/Enemies.tsx",
         "/home/arthur/Desktop/Python/plat/Assets/Levels/D1CD.tmx",
-        "/home/arthur/Desktop/Python/plat/Assets/Levels/39C4.tmx",
         "/home/arthur/Desktop/Python/plat/Assets/Levels/1C11.tmx",
         "/home/arthur/Desktop/Python/plat/Assets/Levels/2031.tmx",
         "/home/arthur/Desktop/Python/plat/Assets/Levels/FA5B.tmx",
         "/home/arthur/Desktop/Python/plat/Assets/Levels/5258.tmx",
         "/home/arthur/Desktop/Python/plat/Assets/Levels/F492.tmx",
         "/home/arthur/Desktop/Python/plat/Assets/Levels/240F.tmx",
-        "/home/arthur/Desktop/Python/plat/Assets/Levels/1979.tmx",
         "/home/arthur/Desktop/Python/plat/Assets/Levels/07D3.tmx",
         "/home/arthur/Desktop/Python/plat/Assets/Levels/4F09.tmx"
     ],

@@ -35,10 +35,11 @@ from Modules.Quadtree import *
 
 class Game:
 
-    def __init__(self,player,objects,quadTree,objectsTopLayer,objectsWaterLayer,objectsOnce,enemies,buffer,display,screenSize,camera,animationSystem,gameObjectSystem,uiSystem,enemySystem,queueSystem,switchSystem,effectsSystem,saveSystem,audioSystem,puzzles,solvedPuzzles,activationPersist):
+    def __init__(self,player,objects,objectsWeapon,quadTree,objectsTopLayer,objectsWaterLayer,objectsOnce,enemies,buffer,display,screenSize,camera,animationSystem,gameObjectSystem,uiSystem,enemySystem,queueSystem,switchSystem,effectsSystem,saveSystem,audioSystem,playerSystem,puzzles,solvedPuzzles,activationPersist):
         
         self.player = player
         self.objects = objects
+        self.objectsWeapon = objectsWeapon
         self.objectsTopLayer = objectsTopLayer
         self.objectsWaterLayer = objectsWaterLayer
         self.enemies = enemies
@@ -60,6 +61,7 @@ class Game:
         self.effectsSystem = effectsSystem
         self.saveSystem = saveSystem
         self.audioSystem = audioSystem
+        self.playerSystem = playerSystem
         
         self.screenSize = screenSize
         self.currentRoom = ''
@@ -71,6 +73,7 @@ class Game:
         self.animationSystem.update()
         self.uiSystem.update(self,keys)
         self.queueSystem.update(self,self.uiSystem)
+        self.playerSystem.update(self,keys)
         self.camera.update(self.player)
         self.counter += 1
 
