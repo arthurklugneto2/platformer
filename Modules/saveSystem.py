@@ -41,6 +41,9 @@ class SaveSystem:
         save['playerMaxLife'] = game.player.maxHealth
         save['playerLives'] = game.player.lives
         save['playerDoubleJump'] = game.player.canDoubleJump
+        save['playerInventory'] = []
+        for inventory in game.playerSystem.inventory:
+            save['playerInventory'].append([inventory.name,inventory.quantity])
 
         save['objectsOnce'] = game.objectsOnce
         save['solvedPuzzles'] = game.solvedPuzzles
@@ -80,6 +83,7 @@ class SaveSystem:
             persists = save['activationPersist']
             activatedCheckpoints = save['activatedCheckpoint']
             switches = save['switches']
+            inventory = save['playerInventory']
 
             game.loadLevel(levelName,game.objects,game.enemies,game.objectsTopLayer,game.objectsWaterLayer,(playerX,playerY),False)
             
@@ -89,6 +93,9 @@ class SaveSystem:
             game.player.maxHealth = maxHealth
             game.player.lives = lives
             game.player.canDoubleJump = doubleJump
+            game.playerSystem.clearInventory()
+            for invItem in inventory:
+                game.playerSystem.addItemToInventory(invItem[0],int(invItem[1]))
 
             game.objectsOnce = objectOnce
             game.solvedPuzzles = solvedPuzzles
@@ -96,6 +103,8 @@ class SaveSystem:
             game.activatedCheckpoints = activatedCheckpoints
 
             game.switchSystem.switches = switches
+
+
 
 
     def hasSaveFile(self):

@@ -1,0 +1,37 @@
+<mxfile>
+    <diagram id="Ln3_0-60PbVpRh1tTkRV" name="Page-1">
+        <mxGraphModel dx="820" dy="407" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+            <root>
+                <mxCell id="0"/>
+                <mxCell id="1" parent="0"/>
+                <mxCell id="2" value="" style="rounded=0;whiteSpace=wrap;html=1;fillColor=none;strokeWidth=2;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="160" width="280" height="160" as="geometry"/>
+                </mxCell>
+                <mxCell id="3" value="Screen" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+                    <mxGeometry x="320" y="140" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="4" value="Player" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;strokeColor=#001DBC;strokeWidth=2;fillColor=#0050ef;fontColor=#ffffff;" vertex="1" parent="1">
+                    <mxGeometry x="450" y="250" width="20" height="30" as="geometry"/>
+                </mxCell>
+                <mxCell id="7" value="" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#f0f0f0;strokeWidth=1;fillColor=none;dashed=1;" vertex="1" parent="1">
+                    <mxGeometry x="130" y="120" width="470" height="200" as="geometry"/>
+                </mxCell>
+                <mxCell id="8" value="Level" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;" vertex="1" parent="1">
+                    <mxGeometry x="130" y="100" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="9" value="" style="rounded=0;whiteSpace=wrap;html=1;dashed=1;strokeWidth=1;fillColor=none;dashPattern=1 2;strokeColor=#33FF33;" vertex="1" parent="1">
+                    <mxGeometry x="332.5" y="165" width="255" height="150" as="geometry"/>
+                </mxCell>
+                <mxCell id="10" value="Camera" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;dashPattern=1 2;" vertex="1" parent="1">
+                    <mxGeometry x="332.5" y="165" width="40" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="11" value="MOUSE :&amp;nbsp; [237, 193]&lt;br&gt;PLAYER :&amp;nbsp; [494, 256]&amp;nbsp;&lt;br&gt;CAMERA :&amp;nbsp; [-273, -76]" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;dashPattern=1 2;" vertex="1" parent="1">
+                    <mxGeometry x="120" y="380" width="130" height="20" as="geometry"/>
+                </mxCell>
+                <mxCell id="12" value="Player - Camera ?" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;dashed=1;dashPattern=1 2;" vertex="1" parent="1">
+                    <mxGeometry x="395" y="350" width="130" height="20" as="geometry"/>
+                </mxCell>
+            </root>
+        </mxGraphModel>
+    </diagram>
+</mxfile>

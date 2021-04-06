@@ -20,6 +20,7 @@ from Modules.switchSystem import SwitchSystem
 from Modules.effectsSystem import EffectsSystem
 from Modules.saveSystem import SaveSystem
 from Modules.audioSystem import AudioSystem
+from Modules.playerSystem import PlayerSystem
 from Modules.game import Game
 from pytmx.util_pygame import load_pygame
 from xml.dom import minidom
@@ -43,6 +44,7 @@ class GameScreen(Screen):
         self.objectsTopLayer = []
         self.objectsWaterLayer = []
         self.objectsOnce = []
+        self.objectsWeapon = []
 
         self.puzzles = []
         self.solvedPuzzles = []
@@ -60,11 +62,11 @@ class GameScreen(Screen):
         self.player = Player(0,0, player_width, player_height)
 
     def createGame(self,buffer,display,screenSize,screenScale):
-        self.game = Game(self.player,self.objects,self.quadTree,self.objectsTopLayer,self.objectsWaterLayer,self.objectsOnce,
+        self.game = Game(self.player,self.objects,self.objectsWeapon,self.quadTree,self.objectsTopLayer,self.objectsWaterLayer,self.objectsOnce,
             self.enemies,buffer,display,screenSize,
             self.camera,AnimationSystem(),GameObjectSystem(),
             UISystem(screenSize,screenScale),EnemySystem(),QueueSystem(),SwitchSystem(),EffectsSystem(),
-            SaveSystem(),AudioSystem(),self.puzzles,self.solvedPuzzles,self.activationPersist)
+            SaveSystem(),AudioSystem(),PlayerSystem(self.player),self.puzzles,self.solvedPuzzles,self.activationPersist)
 
     def loadInitialMap(self):
         arguments = sys.argv
@@ -118,6 +120,13 @@ class GameScreen(Screen):
             for enemy in self.enemies:
                     enemy_check(enemy,self.objects[0],self.game)
 
+            # Update weapons objects such as bullets, etc
+            for weapon in self.objectsWeapon:
+                weapon.update()
+                bullet_check(weapon,self.game)
+                if weapon.life <= 0:
+                    self.objectsWeapon.remove(weapon)
+
             self.game.effectsSystem.update()
 
     def draw(self,buffer,display,screenSize,keys):
@@ -149,6 +158,9 @@ class GameScreen(Screen):
             for obj in self.objectsWaterLayer:
                 if not isinstance(obj, Player):
                     obj.draw(buffer,self.camera)
+
+            for weapon in self.objectsWeapon:
+                weapon.draw(buffer,self.camera)
 
             # Draw Game Effetcs
             self.game.effectsSystem.draw(buffer,self.camera)

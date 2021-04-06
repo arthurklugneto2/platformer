@@ -5,6 +5,7 @@ from GameObjects.gameobject import GameObject
 from GameObjects.coin import Coin
 from GameObjects.waterSurface import WaterSurface
 from Objects.water import Water
+from Objects.ground import Ground
 
 def player_check(player, obj,game):
 
@@ -81,3 +82,21 @@ def enemy_check(enemy, obj,game):
            (obj.y+obj.eco[1]) < (enemy.y+enemy.co[1]) + (enemy.h+enemy.cs[1]) and \
            (obj.y+obj.eco[1]) + obj.h+obj.ecs[1] > (enemy.y+enemy.co[1]):
            obj.enemyContact(enemy,game)
+
+def bullet_check(bullet,game):
+    
+    # If there is collision with ground remove the bullet
+    collisions = [rect for rect in game.quadTree.querry(bullet.x,bullet.y,bullet.w,bullet.h)]
+    if len(collisions) > 0:
+        for collision in collisions:
+            data = collision.data
+            if isinstance(data,Ground):
+                rect1 = {'x':bullet.x,'y':bullet.y,'width':bullet.w,'height':bullet.h}
+                rect2 = {'x':data.x,'y':data.y,'width':data.w,'height':data.h}
+                if rect1['x'] < rect2['x'] + rect2['width'] and \
+                    rect1['x'] + rect1['width'] > rect2['x'] and \
+                    rect1['y'] < rect2['y'] + rect2['height'] and \
+                    rect1['y'] + rect1['height'] > rect2['y']:
+                    
+                    if bullet in game.objectsWeapon:
+                        game.objectsWeapon.remove(bullet)

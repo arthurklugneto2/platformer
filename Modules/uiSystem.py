@@ -11,14 +11,18 @@ class UISystem:
         self.scale = screenScale
         self.screenSize = screenSize
         self.defaultFont = pygame.font.Font("./Assets/Fonts/default.ttf", 16*screenScale)
+        self.defaultFontSmall = pygame.font.Font("./Assets/Fonts/default.ttf", 8*screenScale)
         self.displayFont = pygame.font.Font("./Assets/Fonts/display.ttf", 16*screenScale)
 
         self.pathPrefix = './Assets/UI/'
+        self.invSizeX = 150
+        self.invSizeY = 40
+        self.showInventory = True
 
         self.dialogTimerReset = 60
         self.dialogTimer = 60
 
-        self.bgRectangle = pygame.Surface((screenSize[0],30*screenScale))
+        self.bgRectangle = pygame.Surface((screenSize[0],34*screenScale))
         self.bgRectangle.set_alpha(220)
         self.bgRectangle.fill((0,0,0))
 
@@ -43,22 +47,34 @@ class UISystem:
         self.messages = []
         self.dialogs = []
 
+        self.s = pygame.Surface((32*self.scale,32*self.scale))  
+        self.s.set_alpha(200)                
+        self.s.fill((0,0,0))
+
     def update(self,game,keys):
 
-        # Black Rectangle
-        game.display.blit( self.bgRectangle , (0,game.screenSize[1]-(30*self.scale)) )
+        game.display.blit( self.bgRectangle , (0,game.screenSize[1]-(34*self.scale)) )
 
-        # Player Keys
-        keys_number = self.defaultFont.render(str(game.player.keys),False,(255,255,255))
-        game.display.blit(keys_number,(game.screenSize[0]-(36*self.scale),game.screenSize[1]-(26*self.scale)))
-        game.display.blit(self.keyIcon,(game.screenSize[0]-(60*self.scale),game.screenSize[1]-(26*self.scale)))
+        self.drawPlayerKeys(game,keys)
+        self.drawPlayerCoins(game,keys)
+        self.drawPlayerHealth(game,keys)
+        self.drawInventory(game,keys)
+        self.drawDialogAndMessages(game,keys)
 
-        # Player Coins
+        self.dialogTimer -= 1
+        if self.dialogTimer < 0: self.dialogTimer = 0
+
+    def drawPlayerCoins(self,game,keys):
         coins_number = self.defaultFont.render(str(game.player.coins),False,(255,255,255))
         game.display.blit(coins_number,(game.screenSize[0]-(126*self.scale),game.screenSize[1]-(26*self.scale)))
         game.display.blit(self.coinIcon,(game.screenSize[0]-(150*self.scale),game.screenSize[1]-(25*self.scale)))
 
-        # Player Health
+    def drawPlayerKeys(self,game,keys):
+        keys_number = self.defaultFont.render(str(game.player.keys),False,(255,255,255))
+        game.display.blit(keys_number,(game.screenSize[0]-(36*self.scale),game.screenSize[1]-(26*self.scale)))
+        game.display.blit(self.keyIcon,(game.screenSize[0]-(60*self.scale),game.screenSize[1]-(26*self.scale)))
+
+    def drawPlayerHealth(self,game,keys):
         lives_number = self.defaultFont.render(str(game.player.lives),False,(255,255,255))
         game.display.blit(lives_number,(10,game.screenSize[1]-(26*self.scale)))
         healthCalc = game.player.health
@@ -69,7 +85,32 @@ class UISystem:
                 game.display.blit(self.hearthEmptyIcon,(x * 20*self.scale +(38* self.scale),game.screenSize[1]-(21*self.scale)))
             healthCalc -= 1
 
-        # Display UI Messages
+    def drawInventory(self,game,keys):
+        
+        if self.showInventory:
+            itens = game.playerSystem.getItensForUi()
+            pygame.draw.rect(game.display, (20,20,20), pygame.Rect(240*self.scale,self.screenSize[1]-(33*self.scale), 32*self.scale, 32*self.scale),1*self.scale)
+            pygame.draw.rect(game.display, (50,50,50), pygame.Rect(280*self.scale,self.screenSize[1]-(33*self.scale), 32*self.scale, 32*self.scale),1*self.scale)
+            pygame.draw.rect(game.display, (20,20,20), pygame.Rect(320*self.scale,self.screenSize[1]-(33*self.scale), 32*self.scale, 32*self.scale),1*self.scale)
+            if itens != None:
+                if( len(itens) == 3 ):
+                    if itens[0].getDrawable() != None:
+                        game.display.blit(pygame.transform.scale(itens[0].getDrawable(),(32*self.scale,32*self.scale)),(240*self.scale,self.screenSize[1]-(33*self.scale)))
+                        if itens[0].isDisplayQuantity():
+                            game.display.blit(self.defaultFontSmall.render(str(itens[0].quantity),False,(255,255,255)),((240+24)*self.scale,self.screenSize[1]-(12*self.scale)))
+                    if itens[1].getDrawable() != None:
+                        game.display.blit(pygame.transform.scale(itens[1].getDrawable(),(32*self.scale,32*self.scale)),(280*self.scale,self.screenSize[1]-(33*self.scale)))
+                        if itens[1].isDisplayQuantity():
+                            game.display.blit(self.defaultFontSmall.render(str(itens[1].quantity),False,(255,255,255)),((280+24)*self.scale,self.screenSize[1]-(12*self.scale)))                
+                    if itens[2].getDrawable() != None:
+                        game.display.blit(pygame.transform.scale(itens[2].getDrawable(),(32*self.scale,32*self.scale)),(320*self.scale,self.screenSize[1]-(33*self.scale)))
+                        if itens[2].isDisplayQuantity():
+                            game.display.blit(self.defaultFontSmall.render(str(itens[2].quantity),False,(255,255,255)),((320+24)*self.scale,self.screenSize[1]-(12*self.scale)))           
+                      
+            game.display.blit(self.s, (240*self.scale,self.screenSize[1]-(33*self.scale)))
+            game.display.blit(self.s, (320*self.scale,self.screenSize[1]-(33*self.scale)))
+
+    def drawDialogAndMessages(self,game,keys):
         if len(self.messages) > 0:
             if self.messages[0].time == 0:
                 self.messages.pop(0)
@@ -119,11 +160,6 @@ class UISystem:
                 if remainingText != '':
                     self.dialogs.append(UIDialog(remainingText))
                 self.dialogs.pop(0)
-
-        #self.drawText(game.display,'ola',(0,0,0),Rect(0,0,200,200),self.defaultFont)
-
-        self.dialogTimer -= 1
-        if self.dialogTimer < 0: self.dialogTimer = 0
 
     def addMessage(self,message,time):
         self.messages.append( UIMessage(message,time) )
